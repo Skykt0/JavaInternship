@@ -21,6 +21,7 @@ public class FirstArrayList {
         }
         System.out.println();
 
+
         // adding the element at specified index
         list.add(0, "Akash Bhardwaj");
 
