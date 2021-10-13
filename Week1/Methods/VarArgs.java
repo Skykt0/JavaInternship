@@ -12,6 +12,7 @@ public class VarArgs {
     
         System.out.println(sum());
     }
+    
     static int sum(int ...num){
         int result =0;
         for(int e:num){
