@@ -2,8 +2,6 @@ package Week1.Array;
 
 import java.util.Scanner;
 
-import org.graalvm.compiler.phases.common.util.TracingNodeEventListener;
-
 public class Transpose {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
