@@ -13,6 +13,5 @@ public class MyClass {
 
         Date d = new Date(milli); 
         System.out.println(d);
-        d.
     }
 }
