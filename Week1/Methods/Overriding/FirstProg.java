@@ -3,8 +3,8 @@ package Week1.Methods.Overriding;
 public class FirstProg {
     public static void main(String[] args){
         Son son = new Son();
-        son.home(); // it will call father class home method
-        son.car(); // it will call Son class car method 
+        son.home(); 
+        son.car();  
     }
 }
 

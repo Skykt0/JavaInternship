@@ -20,7 +20,7 @@ class Parent{
         return a+b;
     }
 
-    // return type is Object class
+   
     Object show(){
         System.out.println("the return type is Object class");
         return null;
@@ -39,8 +39,6 @@ class Child extends Parent{
         return a*b;
     }
 
-    // return type is String class
-    // as String class is sub-class of Object class it is allowed to change return type as sub-class of parent class in overridden method
     String show(){
         System.out.println("the return type is String class");
         return null;
