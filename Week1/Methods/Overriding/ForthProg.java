@@ -17,7 +17,7 @@ class Bird{
     }
 }
 class Sparrow extends Bird{
-     
+
         void fly(){
             System.out.println("this is child show method");
         }
