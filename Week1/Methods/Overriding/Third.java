@@ -17,8 +17,7 @@ class Parent1{
 }
 
 class Child1 extends Parent1{
-    /* if child class wants to override the method then the access specifier should have equal or bigger scope than the parent class method specifier
-
+    /*
         void sum(int a, int b){
             System.out.println("product is: "+(a*b));
         }
