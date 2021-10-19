@@ -4,7 +4,8 @@ public class FinalMethod extends ParentClass
 {
     public static void main(String args[]) 
     {
-
+        FinalMethod obj1 = new FinalMethod();
+        obj1.display();
     }
 
     void display() // compile time error
