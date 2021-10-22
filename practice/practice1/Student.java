@@ -6,7 +6,7 @@ public class Student {
     private String contact;
     private String dob;
     private float[] marks;
-
+    private float percentage;
     private int age;
 
     void setStudentName(String name)
@@ -16,17 +16,17 @@ public class Student {
 
     String getStudentName()
     {
-        return this.name;
+        return name;
     }
 
-    void setStudentContact(String name)
+    void setStudentContact(String contact)
     {
        this.contact = contact;
     }
 
     String getStudentContact()
     {
-        return this.contact;
+        return contact;
     }
 
     void setStudentEmail(String email)
@@ -36,7 +36,7 @@ public class Student {
 
     String getStudentEmail()
     {
-        return this.email;
+        return email;
     }
 
     void setStudentDob(String dob)
@@ -46,7 +46,7 @@ public class Student {
 
     String getStudentDob()
     {
-        return this.dob;
+        return dob;
     }
 
     void setStudentMarks(float[] marks)
@@ -56,7 +56,7 @@ public class Student {
 
     float[] getStudentMarks()
     {
-        return this.marks;
+        return marks;
     }
 
     void setStudentAge(int age){
@@ -64,7 +64,15 @@ public class Student {
     }
     
     int getStudentAge(){
-        return this.age;
+        return age;
+    }
+
+    void setPercentage(float percent){
+        this.percentage = percent;
+    }
+
+    float getPercentage(){
+        return percentage;
     }
 
 }
