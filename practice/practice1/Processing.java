@@ -51,7 +51,7 @@ public class Processing
         return ans;
     }
 
-    public static float percentage(float[] marks)
+    public static float calculatePercentage(float[] marks)
     {
         float sum = marksSum(marks);
         float percentage = sum/marks.length;
