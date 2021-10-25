@@ -108,13 +108,13 @@ public class MainClass
            {
                System.out.println();
                System.out.println("Not Sucessful: ");
-               System.exit(0);   
+
            }
        }
        else{
            System.out.println();
            System.out.println("Not Sucessful: ");
-           System.exit(0);
+           
        }
        
    }
