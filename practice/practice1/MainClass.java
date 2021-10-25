@@ -1,23 +1,18 @@
 package practice.practice1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 public class MainClass 
 {
     static Scanner sc;
     static Student student;
-    static ArrayList<Boolean> details;
 
    public static void main(String args[]){
-    student = new Student();
     sc = new Scanner(System.in);
-    details = new ArrayList<>();
+    student = new Student();
 
-    read(); // taking input from the user
+    read();
     checkRemarks(student.getStudentAge(), student.getStudentMarks());
     display();
    }
@@ -29,74 +24,56 @@ public class MainClass
        // student name input
        System.out.print("Name: ");
        String name = sc.nextLine();
-       String regexName = "[A-Za-z\s]+";
-
-       if(Pattern.matches(regexName, name)){
-           details.add(true);
-       }else{
-           details.add(false);
-       }
-       student.setStudentName(name);
+       RegexChecker.checkRegexName(name);
 
        // student contact input
        System.out.print("Contact Number: ");
        String contact = sc.nextLine();
-       String regexContact = "[6789][0-9]{9}";
-
-       if(Pattern.matches(regexContact, contact)){
-           details.add(true);
-       }else{
-           details.add(false);
-       }    
-       student.setStudentContact(contact);
+       RegexChecker.checkRegexContact(contact);
 
        //student email input
-       System.out.print("Email: ");
-       String email = sc.nextLine();    
-       String regexEmail = "[a-zA-Z0-9][a-zA-Z0-9_.]*@[a-zA-Z0-9]+[.][a-z]{2,3}";
+       //email - [a-z0-9]@[a-z][.][org | in | com]
 
-       if(Pattern.matches(regexEmail, email)){
-           details.add(true);
-       }else{
-           details.add(false);
-       }    
-       student.setStudentEmail(email);
+       System.out.print("Email: ");
+       String email = sc.nextLine(); 
+       RegexChecker.checkRegexEmail(email);   
 
        //student dob input
        System.out.print("DOB:(dd-mm-yyyy): ");
        String dob = sc.nextLine();
-                   
-       String regexDob = "(0[1-9]|[12][0-9]|[3][01])-(0[1-9]|1[012])-([1-9][0-9][0-9][0-9])";
-
-       if(Pattern.matches(regexDob, dob)){
-           details.add(true);
-       }else{
-           details.add(false);
-       }
-       student.setStudentAge(Processing.getAge(dob));
-       student.setStudentDob(dob);
+       RegexChecker.checkRegexDob(dob);
 
        //student marks input
-       System.out.println("Enter marks: ");
-       float[] marks = new float[5];
-                       
-       for(int i=0; i<marks.length; i++)
-       {
-           System.out.print("subject "+(i+1)+" = ");
-           marks[i]=sc.nextFloat();
-       }
-       student.setStudentMarks(marks);
+       System.out.print("Enter no. of Subjects: ");
+       int numberOfSubjects = sc.nextInt();
+       if(numberOfSubjects<=10){
+           System.out.println("Enter marks: ");
+           float[] marks = new float[numberOfSubjects];
+           for(int i=0; i<marks.length; i++)
+           {
+               System.out.print("subject "+(i+1)+" = ");
+               marks[i]=sc.nextFloat();
+           }
+           student.setStudentMarks(marks);
+       } 
+       else{
+           System.out.println("Number of subjects can not be more than 10");
+           System.exit(0);
+       }             
    }
    
    private static void checkRemarks(int age, float[] marks)
    {
-       if(details.contains(false)){
+       if(RegexChecker.details.contains(false))
+       {
            System.out.println();
-           System.out.println("Invalid details entered..");
+           System.out.print("Invalid: ");
+           RegexChecker.checkUserDetails();
+           System.out.println();
            System.exit(0);
        }
 
-       if(Processing.checkAge(age))
+       else if(Processing.checkAge(age))
        {
            if(Processing.checkMarks(marks))
            {
@@ -108,15 +85,13 @@ public class MainClass
            {
                System.out.println();
                System.out.println("Not Sucessful: ");
-
            }
        }
-       else{
+       else
+       {
            System.out.println();
-           System.out.println("Not Sucessful: ");
-           
-       }
-       
+           System.out.println("Not Sucessful: ");    
+       }  
    }
 
    private static void display()
@@ -129,6 +104,6 @@ public class MainClass
        System.out.println("5. Age - "+student.getStudentAge());
        System.out.println("6. Marks - "+Arrays.toString(student.getStudentMarks())+" ");
        System.out.println("7. percentage - "+student.getPercentage());
-       
+       System.out.println();
    }    
 }
