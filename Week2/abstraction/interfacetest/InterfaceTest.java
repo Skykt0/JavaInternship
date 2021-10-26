@@ -2,24 +2,35 @@ package Week2.abstraction.interfacetest;
 
 public class InterfaceTest {
     public static void main(String args[]){
-        B obj = new B();
-        obj.m1();
-        obj.m2();
+        B b = new B();
+        b.profession();
+        b.age();
+
+        A a = new A();
+        a.profession();
+        a.age();
     }
 }
-interface interf{
-    public void m1();
-    public void m2();
+interface Person{
+    void profession();
+    void age();
 }
 
-abstract class A implements interf{
-    public void m1(){
-        System.out.println("m1 method implemented by class A");
+class A implements Person{
+    public void profession(){
+        System.out.println("A is a doctor.");
+    }
+
+    public void age(){
+        System.out.println("A's age is 33");
     }
 }
 
-class B extends A{
-    public void m2(){
-        System.out.println("m2 method implemented by class B");
+class B implements Person{
+    public void profession(){
+        System.out.println("B is an IAS officer");
+    }
+    public void age(){
+        System.out.println("B's age is 27");
     }
 }
