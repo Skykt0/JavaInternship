@@ -1,4 +1,4 @@
-package Week2.keywords.superkeyword;
+package Week3.keywords.superkeyword;
 
 public class SubClass extends SuperClass
 {
