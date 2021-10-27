@@ -1,4 +1,4 @@
-package Week3.inheritence;
+package Week4.inheritence;
 
 import java.util.Scanner;
 
