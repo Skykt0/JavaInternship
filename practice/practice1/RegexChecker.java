@@ -9,7 +9,8 @@ class RegexChecker{
 
     static void checkRegexName(String name)
     {
-        String regexName = "[A-Za-z\s]+";
+        //[A-Za-z\s]+
+        String regexName = "([A-Z][a-z]*[\s]?)+";
 
         if(Pattern.matches(regexName, name))
         {
@@ -39,7 +40,7 @@ class RegexChecker{
 
     static void checkRegexEmail(String email)
     {
-        String regexEmail = "[a-zA-Z0-9][a-zA-Z0-9_.]*@[a-z]+[.][o|r|g|i|n|c|m]{2,3}";
+        String regexEmail = "[a-zA-Z0-9][a-zA-Z0-9_.]+@[a-z]+[.](org|in|com)";
 
         if(Pattern.matches(regexEmail, email))
         {
@@ -54,7 +55,9 @@ class RegexChecker{
 
     static void checkRegexDob(String dob)
     {
-        String regexDob = "(0[1-9]|[12][0-9]|[3][01])-(0[1-9]|1[012])-([1-9][0-9][0-9][0-9])";
+        //"(0[1-9]|[12][0-9]|[3][01])-(0[1-9]|1[012])-([1-9][0-9][0-9][0-9])"
+
+        String regexDob = "(0[1-9]|[12][0-9]|[3][01])-(0[1-9]|1[012])-(19[5-9][0-9]|200[0-9]|201[0-9]|202[01])";
         // 05-05-2001
         // 09-12-9999
        if(Pattern.matches(regexDob, dob))
@@ -70,7 +73,8 @@ class RegexChecker{
     }
 
     static void checkUserDetails()
-    {
+    {-++
+        .36
         for(int i=0; i<details.size(); i++){
             if(i==0 && details.get(i) == false){
                 System.out.print("Name, ");
