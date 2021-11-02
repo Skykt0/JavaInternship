@@ -61,7 +61,7 @@ public class MatrixMultiplication {
         else{
             for(int row=0; row<row1; row++){
                 for(int col=0; col<col2; col++){
-                    for(int k=0; k<col2; k++){
+                    for(int k=0; k<col1; k++){
                         result[row][col] = result[row][col]+ matrix1[row][k]*matrix2[k][col];
                     }
                 }
