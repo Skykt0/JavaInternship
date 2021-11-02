@@ -8,8 +8,6 @@ public class InvokeCurrentClassMethod {
         this.name = name;
         this.id = id;
         showDetails(); // same as this.showDetails();
-
-
     }
 
     void showDetails(){
