@@ -6,13 +6,16 @@ import java.util.regex.Pattern;
 
 public class FindWord {
     public static void main(String[] args) {
-        
+        // find occurance of sub-word
         Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no. of line: ");
         int n = Integer.parseInt(sc.nextLine());
+        System.out.println("Enter sentence: ");
         String[] s = new String[n];
         for(int i=0; i<n; i++){
             s[i] = sc.nextLine();
         }
+        System.out.println("Enter no. of subwords:");
         int q = Integer.parseInt(sc.nextLine());
         while(q!=0){
             int count=0;
