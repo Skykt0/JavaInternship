@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class Inheritance5 
 {
     public static void main(String[] args) {
-        Exam e1 = new Exam();
-        Student s1 = new Student(e1); 
+        Student s1 = new Student(); 
         s1.showResult();
     }
 }
@@ -95,25 +94,23 @@ class Exam implements PracticalExam,TheoryExam
 class Student extends Exam{
     String name;
     String rollno;
-    Exam exam;
     Scanner sc = new Scanner(System.in);
 
-    Student(Exam exam){
+    Student(){
         System.out.print("Enter Name: ");
         name = sc.nextLine();
 
         System.out.print("Enter Roll No: ");
         rollno = sc.nextLine();
 
-        this.exam = exam;
-        exam.obtainedTheoryMarks();
-        exam.obtainedPracticalMarks();
+        obtainedTheoryMarks();
+        obtainedPracticalMarks();
     }
     void showResult(){
         System.out.println();
         System.out.println("Name: "+name);
         System.out.println("Roll No. : "+rollno);
-        exam.getResult();
+        getResult();
     }
 
 }
