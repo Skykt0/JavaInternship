@@ -26,8 +26,8 @@ interface TheoryExam
 class Exam implements PracticalExam,TheoryExam
 {
     Scanner sc = new Scanner(System.in);
-    int practicalmarks;
-    int theorymarks;
+    float practicalmarks;
+    float theorymarks;
     int totalmarks = 600;
 
     @Override
@@ -44,43 +44,43 @@ class Exam implements PracticalExam,TheoryExam
         theorymarks = Integer.parseInt(sc.next());
     }
 
-    void showResult()
+    void getResult()
     {
-        Float totalobtainedmarks = (float) (theorymarks + practicalmarks);
-        double percentage = totalobtainedmarks*100/totalmarks;
+        Float totalobtainedmarks = (theorymarks + practicalmarks);
+        float percentage = totalobtainedmarks*100/totalmarks;
 
         if(percentage>=90)
         {
             System.out.println("Total obtained marks: "+totalobtainedmarks);
-            System.out.printf("Percentage: %.2f"+percentage);
+            System.out.printf("Percentage: "+"%.2f%n",percentage);
             System.out.println("Result: Pass");
             System.out.println("Grade: A+");
         }
         else if(percentage>=80)
         {
             System.out.println("Total obtained marks: "+totalobtainedmarks);
-            System.out.println("Percentage: "+percentage);
+            System.out.printf("Percentage: "+"%.2f%n",percentage);
             System.out.println("Result: Pass");
             System.out.println("Grade: A");
         }
         else if(percentage>=70)
         {
             System.out.println("Total obtained marks: "+totalobtainedmarks);
-            System.out.println("Percentage: "+percentage);
+            System.out.printf("Percentage: "+"%.2f%n",percentage);
             System.out.println("Result: Pass");
             System.out.println("Grade: B");
         }
         else if(percentage>=60)
         {
             System.out.println("Total obtained marks: "+totalobtainedmarks);
-            System.out.println("Percentage: "+percentage);
+            System.out.printf("Percentage: "+"%.2f%n",percentage);
             System.out.println("Result: Pass");
             System.out.println("Grade: C");
         }
         else if(percentage>=40)
         {
             System.out.println("Total obtained marks: "+totalobtainedmarks);
-            System.out.println("Percentage: "+percentage);
+            System.out.printf("Percentage: "+"%.2f%n",percentage);
             System.out.println("Result: Pass");
             System.out.println("Grade: D");
         }
@@ -113,7 +113,7 @@ class Student extends Exam{
         System.out.println();
         System.out.println("Name: "+name);
         System.out.println("Roll No. : "+rollno);
-        exam.showResult();
+        exam.getResult();
     }
 
 }
