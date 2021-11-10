@@ -1,6 +1,6 @@
 package Week4.polymorphism;
 
-public class StaticPolymorphism 
+public class CompileTime 
 {
     public static void main(String[] args){
         Adder add = new Adder();
