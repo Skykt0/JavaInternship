@@ -14,7 +14,7 @@ public class ThrowKeyword {
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        
         System.out.println("Program ended successfully..");
     }
     static void validate(int age)
