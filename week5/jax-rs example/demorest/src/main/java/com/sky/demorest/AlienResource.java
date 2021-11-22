@@ -34,6 +34,7 @@ public class AlienResource
 	@POST
 	@Path("alien")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Alien createAlien(Alien a)
 	{
 		return repo.create(a);
@@ -41,7 +42,6 @@ public class AlienResource
 	
 	@DELETE
 	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public String deleteAlien(@PathParam("id")int id)
 	{
 		repo.deleteAlien(id);
