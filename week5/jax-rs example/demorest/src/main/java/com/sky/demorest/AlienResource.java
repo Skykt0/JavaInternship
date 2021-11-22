@@ -51,7 +51,7 @@ public class AlienResource
 	
 	@PUT
 	@Path("update/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public String updateAlien(@PathParam("id")int id, Alien alien)
 	{
 		repo.updateAlien(id, alien.getName(), alien.getPoints());
