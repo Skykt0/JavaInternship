@@ -1,17 +1,29 @@
 package com.sky.studentapi;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Student 
 {
-	private int studentId, age, subjectNumber;
-	private String studentName, studentEmailId, studentMobile, studentClass;
+	private int studentId;
+	private int age;
+	private int subjectNumber;
+	private String studentName;
+	private String studentEmailId;
+	private String studentMobile;
+	private String studentClass;
 	private boolean isMax = false;
+	private ArrayList<StudentSubjects> subjects;
 	
-	private List<String> subjectName;
-	private List<Integer> subjectMarks;
-	private List<String> subjectType;
-	
+	public ArrayList<StudentSubjects> getSubjects() 
+	{
+		return subjects;
+	}
+
+	public void setSubjects(ArrayList<StudentSubjects> subjects) 
+	{
+		this.subjects = subjects;
+	}
+
 	public int getStudentId() 
 	{
 		return studentId;
@@ -42,36 +54,6 @@ public class Student
 		this.subjectNumber = subjectNumber;
 	}
 	
-	public List<String> getSubjectName() 
-	{
-		return subjectName;
-	}
-
-	public void setSubjectName(List<String>  subjectName) 
-	{
-		this.subjectName = subjectName;
-	}
-
-	public List<String> getSubjectType() 
-	{
-		return subjectType;
-	}
-
-	public void setSubjectType(List<String> subjectType) 
-	{
-		this.subjectType = subjectType;
-	}
-
-	public List<Integer> getSubjectMarks()
-	{
-		return subjectMarks;
-	}
-
-	public void setSubjectMarks(List<Integer> subjectMarks) 
-	{
-		this.subjectMarks = subjectMarks;
-	}
-
 	public String getStudentName() 
 	{
 		return studentName;
@@ -120,7 +102,5 @@ public class Student
 	public void setMax(boolean isMax) 
 	{
 		this.isMax = isMax;
-	}
-	
-	
+	}	
 }

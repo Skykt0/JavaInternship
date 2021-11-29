@@ -10,7 +10,6 @@ import java.util.List;
 public class StudentDao 
 {
 	Connection conn;
-	
 	public StudentDao()
 	{
 		try
@@ -31,7 +30,8 @@ public class StudentDao
 		
 		try 
 		{
-			PreparedStatement pstmt = conn.prepareStatement("select * from student");
+			String sql = "select * from student";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next())
@@ -64,11 +64,11 @@ public class StudentDao
 	public Student getStudent(int id)
 	{
 		Student s = new Student();
-		System.out.println("hello getbyid");
 		PreparedStatement pstmt;
 		try 
 		{
-			pstmt = conn.prepareStatement("select *from student where studentid = ?");
+			String sql = "select *from student where studentid = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next())
@@ -86,21 +86,21 @@ public class StudentDao
 				s.setStudentMobile(rs.getString(8));
 			}
 			
-			pstmt = conn.prepareStatement("select *from subjects where studentid = ?");
+			sql = "select *from subjects where studentid = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,id);
 			rs = pstmt.executeQuery();
-			List<String> subjectName = new ArrayList<>();
-			List<Integer> subjectMarks = new ArrayList<>();
-			List<String> subjectType = new ArrayList<>();
+			ArrayList<StudentSubjects> subjectList = new ArrayList<>();
 			while(rs.next())
 			{
-				subjectName.add(rs.getString(2));
-				subjectMarks.add(rs.getInt(3));
-				subjectType.add(rs.getString(4));
+				StudentSubjects ss = new StudentSubjects();
+				ss.setSubjectName(rs.getString(2));
+				ss.setSubjectMarks(rs.getInt(3));
+				ss.setSubjectType(rs.getString(4));
+				
+				subjectList.add(ss);
 			}
-			s.setSubjectName(subjectName);
-			s.setSubjectMarks(subjectMarks);
-			s.setSubjectType(subjectType);
+			s.setSubjects(subjectList);
 		}
 		catch(Exception e)
 		{
@@ -114,8 +114,8 @@ public class StudentDao
 		PreparedStatement pstmt;
 		try
 		{
-			System.out.println("create student called");
-			pstmt = conn.prepareStatement("insert into student(studentId, name, emailId, class, subjectNumber, age, isMax, mobile) values(?,?,?,?,?,?,?,?)");
+			String sql = "insert into student(studentId, name, emailId, class, subjectNumber, age, isMax, mobile) values(?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getStudentId());
 			pstmt.setString(2, student.getStudentName());
 			pstmt.setString(3, student.getStudentEmailId()); 
@@ -130,17 +130,16 @@ public class StudentDao
 			pstmt.setString(8, student.getStudentMobile());
 			pstmt.executeUpdate();
 			
-			pstmt = conn.prepareStatement("insert into subjects(studentId, subjectName, subjectMarks, subjectType) values(?,?,?,?)");
-			List<String> subjectName = student.getSubjectName();
-			List<Integer> subjectMarks = student.getSubjectMarks();
-			List<String> subjectType = student.getSubjectType();
+			sql = "insert into subjects(studentId, subjectName, subjectMarks, subjectType) values(?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			ArrayList<StudentSubjects>subjectList = student.getSubjects();
 			
+			pstmt.setInt(1, student.getStudentId());
 			for(int i=0; i<student.getSubjectNumber(); i++)
 			{	
-				pstmt.setInt(1, student.getStudentId());
-				pstmt.setString(2,subjectName.get(i));
-				pstmt.setInt(3, subjectMarks.get(i));
-				pstmt.setString(4, subjectType.get(i));
+				pstmt.setString(2, subjectList.get(i).getSubjectName());
+				pstmt.setInt(3, subjectList.get(i).getSubjectMarks());
+				pstmt.setString(4, subjectList.get(i).getSubjectType());
 				pstmt.executeUpdate();
 			}
 		}
@@ -173,32 +172,108 @@ public class StudentDao
 		return "Not Updated";
 	}
 	
+	public String updateName(int id, Student student)
+	{
+		try
+		{
+			String sql = "update student set name = ? where studentid = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student.getStudentName());
+			pstmt.setInt(2, id);
+			int cnt = pstmt.executeUpdate();
+			if(cnt == 1)
+				return "Student Name updated Successfully";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "Update not successful";
+	}
+	
+	public String updateEmail(int id, Student student)
+	{
+		try
+		{
+			String sql = "update student set emailid = ? where studentid = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student.getStudentEmailId());
+			pstmt.setInt(2, id);
+			int cnt = pstmt.executeUpdate();
+			if(cnt == 1)
+				return "Student Email updated Successfully";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "Update not successful";
+	}
+	
+	public String updateContact(int id, Student student)
+	{
+		try
+		{
+			String sql = "update student set mobile = ? where studentid = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student.getStudentMobile());
+			pstmt.setInt(2, id);
+			int cnt = pstmt.executeUpdate();
+			if(cnt == 1)
+				return "Student Contact updated Successfully";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "Update not successful";
+	}
+	
+	public String updateAge(int id, Student student)
+	{
+		try
+		{
+			String sql = "update student set age = ? where studentid = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, student.getAge());
+			pstmt.setInt(2, id);
+			int cnt = pstmt.executeUpdate();
+			if(cnt == 1)
+				return "Student Age updated Successfully";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "Update not successful";
+	}
+	
 	public String updateStudentSubjectNumber(int id, Student student)
 	{
 		try 
 		{
-			PreparedStatement pstmt = conn.prepareStatement("update student set subjectNumber = ? where studentid = ?");
+			String sql = "update student set subjectNumber = ? where studentid = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			int newSubjectNumber = student.getSubjectNumber();
 			pstmt.setInt(1, newSubjectNumber);
 			pstmt.setInt(2, id);
 			pstmt.executeUpdate();
 			
-			pstmt = conn.prepareStatement("delete from subjects where studentid = ?");
+			sql = "delete from subjects where studentid = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
-
-			List<String> subjects = student.getSubjectName();
-			List<String> subjectType = student.getSubjectType();
-			List<Integer> subjectMarks = student.getSubjectMarks();
 			
+			ArrayList<StudentSubjects> subjectList = student.getSubjects();
+			sql = "insert into subjects(studentid, subjectName, subjectmarks, subjecttype) values(?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
 			int cnt=0;
-			for(int i=0; i<newSubjectNumber ; i++)
-			{
-				pstmt = conn.prepareStatement("insert into subjects(studentid,subjectname,subjectmarks,subjecttype) values(?,?,?,?)");
+			for(int i=0; i<student.getSubjectNumber(); i++)
+			{	
 				pstmt.setInt(1, id);
-				pstmt.setString(2,subjects.get(i));
-				pstmt.setInt(3, subjectMarks.get(i));
-				pstmt.setString(4, subjectType.get(i));
+				pstmt.setString(2, subjectList.get(i).getSubjectName());
+				pstmt.setInt(3, subjectList.get(i).getSubjectMarks());
+				pstmt.setString(4, subjectList.get(i).getSubjectType());
 				cnt = pstmt.executeUpdate();
 			}
 			if(cnt == 1) {
@@ -217,11 +292,13 @@ public class StudentDao
 		PreparedStatement pstmt;
 		try
 		{
-			pstmt = conn.prepareStatement("delete from subjects where studentid = ?");
+			String sql = "delete from subjects where studentid = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			int count1 = pstmt.executeUpdate();
 			
-			pstmt = conn.prepareStatement("delete from student where studentid = ?");
+			sql = "delete from student where studentid = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			int count2 = pstmt.executeUpdate();
 			if(count1 == 0 && count2 == 0)

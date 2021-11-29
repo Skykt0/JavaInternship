@@ -65,6 +65,62 @@ public class StudentResource
 	}
 	
 	@PUT
+	@Path("updateName/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String updateName(@PathParam("id")int id, Student student)
+	{
+		InfoCheck ic = new InfoCheck();
+		HashMap<String, String> remarks = ic.checkName(student.getStudentName());
+		if(remarks.size() == 0)
+		{
+			return sdao.updateName(id,student);			
+		}
+		return "Unsuccessful "+remarks;
+	}
+	
+	@PUT
+	@Path("updateEmail/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String updateEmail(@PathParam("id")int id, Student student)
+	{
+		InfoCheck ic = new InfoCheck();
+		HashMap<String, String> remarks = ic.checkEmail(student.getStudentEmailId());
+		if(remarks.size() == 0)
+		{
+			return sdao.updateEmail(id,student);			
+		}
+		return "Unsuccessful "+remarks;
+	}
+	
+	@PUT
+	@Path("updateContact/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String updateContact(@PathParam("id")int id, Student student)
+	{
+		InfoCheck ic = new InfoCheck();
+		HashMap<String, String> remarks = ic.checkContact(student.getStudentMobile());
+		if(remarks.size() == 0)
+		{
+			return sdao.updateContact(id,student);			
+		}
+		return "Unsuccessful "+remarks;
+	}
+	
+	@PUT
+	@Path("updateAge/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String updateAge(@PathParam("id")int id, Student student)
+	{
+		InfoCheck ic = new InfoCheck();
+		HashMap<String, String> remarks = ic.checkAge(student.getAge());
+		if(remarks.size() == 0)
+		{
+			return sdao.updateAge(id,student);			
+		}
+		return "Unsuccessful "+remarks;
+	}
+	
+	@PUT
 	@Path("updateSubjectNumber/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String udpateSubjectNumber(@PathParam("id")int id, Student student)

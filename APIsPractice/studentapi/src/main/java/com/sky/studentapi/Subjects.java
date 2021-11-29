@@ -46,6 +46,4 @@ public class Subjects
 	{
 		this.subjectType = subjectType;
 	}
-	
-	
 }
