@@ -1,0 +1,8 @@
+com\sky\studentapi\InfoCheck.class
+com\sky\studentapi\Student.class
+com\sky\studentapi\SubjectDao.class
+com\sky\studentapi\StudentDao.class
+com\sky\studentapi\StudentSubjects.class
+com\sky\studentapi\SubjectResource.class
+com\sky\studentapi\StudentResource.class
+com\sky\studentapi\Subjects.class
