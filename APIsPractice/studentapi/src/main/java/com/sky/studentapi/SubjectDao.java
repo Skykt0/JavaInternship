@@ -97,22 +97,16 @@ public class SubjectDao
 		try
 		{
 			pstmt = conn.prepareStatement("update subjects set subjectName = ?, subjectMarks = ?, subjectType = ? where studentid = ? and subjectName = ?");
-			pstmt.setString(1, subject.getSubjectName());
-
-			if(subject.getSubjectMarks()< 0 || subject.getSubjectMarks() > 100)
-			{
+			if(subject.getSubjectMarks()<0 || subject.getSubjectMarks() > 100) {
 				return "marks should be between 0 to 100";
 			}
-
+			pstmt.setString(1, subject.getSubjectName());
 			pstmt.setInt(2, subject.getSubjectMarks());
 			pstmt.setString(3, subject.getSubjectType());
 			pstmt.setInt(4, id);
 			pstmt.setString(5, subjectName);
-
 			int cnt = pstmt.executeUpdate();
-
-			if(cnt == 1) 
-			{
+			if(cnt == 1) {
 				return "Successfully updated";
 			}
 		}
