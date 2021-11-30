@@ -4,7 +4,7 @@ public class Subjects
 {
 	private int studentId;
 	private String subjectName;
-	private Integer subjectMarks;
+	private int subjectMarks;
 	private String subjectType;
 	
 	public void setStudentId(int studentId)
@@ -27,12 +27,12 @@ public class Subjects
 		this.subjectName = subjectName;
 	}
 	
-	public Integer getSubjectMarks() 
+	public int getSubjectMarks() 
 	{
 		return subjectMarks;
 	}
 	
-	public void setSubjectMarks(Integer subjectMarks) 
+	public void setSubjectMarks(int subjectMarks) 
 	{
 		this.subjectMarks = subjectMarks;
 	}
