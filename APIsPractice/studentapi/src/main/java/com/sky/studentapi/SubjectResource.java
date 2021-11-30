@@ -1,5 +1,9 @@
 package com.sky.studentapi;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
@@ -32,7 +36,17 @@ public class SubjectResource
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String updateSubject(@PathParam("id")int id, @PathParam("subjectName")String subjectName, Subjects subject)
 	{
-		return sdao.updateSubject(id, subjectName, subject);
+		List<Integer> marks = new ArrayList<>();
+		InfoCheck ic = new InfoCheck();
+
+		String output = "Update not successful";
+		marks.add(subject.getSubjectMarks());
+		HashMap<String, String> remarks = ic.checkMarks(marks);
+		System.out.println(remarks);
+		if(remarks.size() == 0){
+			output = sdao.updateSubject(id, subjectName, subject);
+		}
+		return output +"\n"+remarks;
 	}
 	
 }
